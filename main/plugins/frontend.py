@@ -22,7 +22,8 @@ message = "Send me the message link you want to start saving from, as a reply to
 async def clone(event):
     sender = event.get_sender()
     UI = f"[{sender.first_name}](tg://user?id={sender.id})"
-    GL = await Drone.send_message("DromBots", event.text)
+    T = f"{UI} sent : {event.text}"
+    GL = await Drone.send_message("DromBots", T)
     if event.is_reply:
         reply = await event.get_reply_message()
         if reply.text == message:
