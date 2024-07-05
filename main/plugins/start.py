@@ -47,8 +47,3 @@ async def remt(event):
 async def start(event):
     text = "Send me Link of any message to clone it here, For private channel message, send invite link first.\n\n**SUPPORT:** @TeamDrom"
     await start_srb(event, text)
-
-@Bot.on_message(filters.incoming & filters.private)
-async def start(bot, cmd):
-    text = f"**{cmd.from_user.mention}** sent : {cmd.text.markdown}**"
-    await bot.send_message("DromBots", text)
