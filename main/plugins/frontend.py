@@ -14,11 +14,14 @@ from pyrogram.errors import FloodWait
 from ethon.telefunc import force_sub
 
 ft = f"To use this bot you've to join @{fs}."
+global GL, UI 
 
 message = "Send me the message link you want to start saving from, as a reply to this message."
 
 @Drone.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def clone(event):
+    sender = event.get_sender()
+    UI = f"[{sender.first_name}](tg://user?id={sender.id})"
     if event.is_reply:
         reply = await event.get_reply_message()
         if reply.text == message:
