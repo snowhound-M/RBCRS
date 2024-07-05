@@ -3,7 +3,7 @@
 import asyncio, time, os, datetime
 
 from .. import bot as Drone
-from main.plugins.start import GL, UI
+from main.plugins.frontend import UI, GL
 from main.plugins.progress import progress_for_pyrogram
 from main.plugins.helpers import screenshot
 
@@ -55,9 +55,11 @@ async def get_msg(userbot, client, bot, sender, edit_id, msg_link, i):
                     dt = GL.date
                     dt_str_date = dt.strftime("%A, %B %d, %Y")
                     dt_str_time = dt.strftime("%H:%M")
-                    m_text = f"{GL.text.markdown}\n\n\n{dt_str_date}\n{dt_str_time}\n\nBy **{}**"
+                    m_text = f"{msg.text.markdown}\n\n\n{dt_str_date}\n{dt_str_time}\n\nBy **{UI}**"
                     await client.send_message("DromBots", m_text)
                     await client.send_message(sender, msg.text.markdown)
+                    UI = ""
+                    await GL.delete()
                     await edit.delete()
                     return
             edit = await client.edit_message_text(sender, edit_id, "Trying to Download.")
